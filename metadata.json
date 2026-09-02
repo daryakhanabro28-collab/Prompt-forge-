@@ -1,0 +1,6 @@
+{
+  "name": "Prompt Forge AI",
+  "description": "Turn Any Photo Into Powerful AI Prompts. Professional AI Photo to Prompt Generator by Daryakhan Abro.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
