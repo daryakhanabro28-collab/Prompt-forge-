@@ -30,8 +30,15 @@ jobs:
         run: |
           if [ -f "debug.keystore.base64" ]; then
             base64 -d debug.keystore.base64 > debug.keystore
-            echo "Successfully restored debug.keystore"
+            echo "Successfully restored debug.keystore from base64"
           fi
+          if [ ! -f "debug.keystore" ]; then
+            echo "debug.keystore not found, generating fresh debug keystore..."
+            keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+          fi
+          cp debug.keystore app/debug.keystore 2>/dev/null || true
+          ls -lh debug.keystore
+
           if [ ! -f ".env" ] && [ -f ".env.example" ]; then
             cp .env.example .env
             echo "Created .env from .env.example"
